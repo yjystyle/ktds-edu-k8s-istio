@@ -1,0 +1,20 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: jaeger-ingress
+  labels:
+    app: jaeger
+spec:
+  ingressClassName: traefik
+  rules:
+  - host: "jaeger.istio-system.cloud.43.203.62.69.nip.io"
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: tracing
+            port:
+              number: 80
+

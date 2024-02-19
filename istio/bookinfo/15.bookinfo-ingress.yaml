@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: bookinfo-ingress-user02
+  namespace: istio-ingress
+spec:
+  ingressClassName: traefik
+  rules:
+  - host: "bookinfo.user02.cloud.43.203.62.69.nip.io"
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: istio-ingressgateway
+            port:
+              number: 80

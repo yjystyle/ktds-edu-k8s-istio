@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: prometheus-ingress
+  labels:
+    app: prometheus
+spec:
+  ingressClassName: traefik
+  rules:
+  - host: "prometheus.istio-system.cloud.43.203.62.69.nip.io"
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: prometheus
+            port:
+              number: 9090
